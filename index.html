@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VisionGuide AI — Visual Perception Assistant</title>
     <meta name="description" content="VisionGuide AI — an offline visual perception assistant. Point the camera at anything; it speaks what it sees, in English or Urdu.">
-    <meta name="theme-color" content="#f4f3ee">
+    <meta name="theme-color" id="meta-theme-color" content="#e4e9f1">
     <link rel="stylesheet" href="style.css">
     <!-- Local Offline TensorFlow.js & COCO-SSD -->
     <script src="lib/tf.min.js"></script>
@@ -17,17 +17,39 @@
     <!-- Header -->
     <header class="app-header">
         <div class="brand">
-            <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-            </svg>
+            <span class="brand-badge" aria-hidden="true">
+                <svg class="brand-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </span>
             <h1 class="brand-name">VisionGuide AI</h1>
         </div>
 
-        <p class="status-chip" role="status">
-            <span class="status-dot" id="system-status-dot"></span>
-            <span id="status-text">Loading Local Model...</span>
-        </p>
+        <div class="header-side">
+            <p class="status-chip" role="status">
+                <span class="status-dot" id="system-status-dot"></span>
+                <span id="status-text">Loading Local Model...</span>
+            </p>
+
+            <!-- Theme toggle: animated light/dark switch, follows system theme by default -->
+            <button id="theme-toggle" class="theme-toggle" role="switch" aria-checked="false" aria-label="Switch between dark and light mode">
+                <span class="tt-track">
+                    <span class="tt-icon tt-sun" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+                        </svg>
+                    </span>
+                    <span class="tt-icon tt-moon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </span>
+                    <span class="tt-knob" aria-hidden="true"></span>
+                </span>
+            </button>
+        </div>
     </header>
 
     <main class="app-main">
@@ -70,7 +92,7 @@
                 </p>
                 <p class="listening-line">
                     <span class="mic-dot" aria-hidden="true"></span>
-                    Microphone is listening — say “switch to Urdu” or “switch to English”.
+                    try saying &ldquo;Language&rdquo;, &ldquo;Urdu&rdquo; or &ldquo;English&rdquo;.
                 </p>
             </section>
 
@@ -98,15 +120,11 @@
         </div>
     </main>
 
-    <footer class="app-footer">
-        <p>Runs entirely on this device — object detection, voice commands and audio prompts need no connection.</p>
-        <p class="footer-keys">Keyboard: <kbd>C</kbd> camera &nbsp;·&nbsp; <kbd>L</kbd> language &nbsp;·&nbsp; <kbd>M</kbd> mute</p>
-    </footer>
-
     <script src="lib/tf.min.js"></script>
     <script src="lib/coco-ssd.min.js"></script>
     <script src="lib/vosk.js"></script>
     <script src="script.js"></script>
     <script src="ui.js"></script>
+    <script src="theme.js"></script>
 </body>
 </html>
